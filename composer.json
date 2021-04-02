@@ -1,0 +1,14 @@
+{
+    "name": "carloswph/mainframe",
+    "description": "Provides a container in which objects can be pushed, and then an interface to call methods that can be found inside the queued objects, and executed sequentially.",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "keywords": ["reflection", "container","di","arrayobject","magic methods", "dependency injection"],
+    "require": {},
+    "autoload": {
+    	"psr-4": {
+    		"Mainframe\\": "src/"
+    	}
+    }
+}
