@@ -4,7 +4,14 @@
     "type": "library",
     "license": "MIT",
     "minimum-stability": "dev",
-    "keywords": ["reflection", "container","di","arrayobject","magic methods", "dependency injection"],
+    "keywords": ["reflection", "container", "di", "arrayobject","magic methods", "dependency injection"],
+    "authors": [
+        {
+            "name": "carlos",
+            "email": "geral@meuppt.pt",            
+            "homepage": "https://wp-helpers.com"
+        }
+    ],
     "require": {},
     "autoload": {
     	"psr-4": {

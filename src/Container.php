@@ -30,6 +30,8 @@ class Container extends \ArrayObject
 		foreach ($objects as $key => $object) {
 			$this->add($key, $object);
 		}
+
+		$this->setFlags(\ArrayObject::ARRAY_AS_PROPS);
 	}
 
 	/**
@@ -51,6 +53,26 @@ class Container extends \ArrayObject
 
 		$this->offsetSet($key, $object);
 
+	}
+	/**
+	 * Alias for ArrayObject::offsetUnset()
+	 *
+	 * @param  $key  string  Instance key.
+	 * @return void
+	 */
+	public function remove(string $key)
+	{
+		$this->offsetUnset($key);
+	}
+	/**
+	 * Alias for ArrayObject::offsetExists()
+	 *
+	 * @param  $key  string  Instance key.
+	 * @return bool
+	 */
+	public function has(string $key)
+	{
+		$this->offsetExists($key);
 	}
 
 	/**
@@ -82,7 +104,15 @@ class Container extends \ArrayObject
 		foreach ($this->methods as $key => $value) {
 			if($value === $method) {
 				$object = $this->offsetGet(str_replace($method, '', $key));
-				call_user_func_array([$object, $method], $args);
+				$reflection = new \ReflectionMethod($object, $method);
+				$params = $reflection->getNumberOfParameters();
+				if($params === 0) {
+					call_user_func([$object, $method]);
+				} elseif ($params === count($args)) {
+					call_user_func_array([$object, $method], $args);
+				} else {
+
+				}
 			}
 		}
 	}
